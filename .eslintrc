@@ -1,0 +1,12 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "modules": true,
+      "generators": true
+    },
+    "sourceType": "module"
+  },
+  "extends": "google"
+}
