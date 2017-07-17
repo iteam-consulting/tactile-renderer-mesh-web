@@ -36,6 +36,20 @@ export class StaticMeshRenderer extends Tactile.Renderer {
   }
 
   /**
+   * Update the position of a mesh.
+   * @param {object} component The component to update
+   * @param {object} position The new position.
+   * @return {object} The updated position.
+   */
+  updatePosition(component, position) {
+    component.mesh.position.x = position.x;
+    component.mesh.position.y = position.y;
+    component.mesh.position.z = position.z;
+
+    return component;
+  }
+
+  /**
    * Performs internal state mutations.
    * @param {object} state The internal state.
    * @param {object} action The action we are going to reduce (maybe).
