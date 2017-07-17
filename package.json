@@ -1,0 +1,33 @@
+{
+  "name": "tactile-renderer-mesh-web",
+  "version": "0.0.0",
+  "description": "Provides a static mesh renderer which integrates into the tactile web system. Edit",
+  "main": "index.js",
+  "dependencies": {
+    "tactile-core-web": "^1.1.0",
+    "three": "^0.86.0"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iteam-consulting/tactile-renderer-mesh-web.git"
+  },
+  "keywords": [
+    "tactile-engine",
+    "renderer",
+    "mesh-renderer",
+    "mesh",
+    "webgl"
+  ],
+  "author": "mlynam@iteamnm.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iteam-consulting/tactile-renderer-mesh-web/issues"
+  },
+  "homepage": "https://github.com/iteam-consulting/tactile-renderer-mesh-web#readme"
+}
