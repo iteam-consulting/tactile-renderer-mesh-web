@@ -1,7 +1,6 @@
 
 import Tactile from 'tactile-core-web';
 import * as Three from 'three';
-import {Set} from 'immutable';
 
 /**
  * Provides a render system for rendering static meshes.

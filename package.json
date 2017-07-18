@@ -4,7 +4,6 @@
   "description": "Provides a static mesh renderer which integrates into the tactile web system. Edit",
   "main": "index.js",
   "dependencies": {
-    "immutable": "^3.8.1",
     "tactile-core-web": "^1.1.6",
     "three": "^0.86.0"
   },

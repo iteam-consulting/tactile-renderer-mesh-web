@@ -1,7 +1,6 @@
 
 import {StaticMeshRenderer} from './staticMeshRenderer';
 import * as Three from 'three';
-import {Set} from 'immutable';
 
 const renderer = new StaticMeshRenderer();
 
