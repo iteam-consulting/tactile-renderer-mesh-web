@@ -1,6 +1,7 @@
 
 import Tactile from 'tactile-core-web';
-import Three from 'three';
+import * as Three from 'three';
+import {Set} from 'immutable';
 
 /**
  * Provides a render system for rendering static meshes.
@@ -17,22 +18,19 @@ export class StaticMeshRenderer extends Tactile.Renderer {
       throw new Error('init data must be an object');
     }
 
-    if (typeof init.vertices !== 'array') {
+    if (!Array.isArray(init.vertices)) {
       throw new Error('init data must include an array of vertices');
     }
 
-    const geometry = new Three.BufferGeometry;
+    const geometry = new Three.BufferGeometry();
     const vertices = new Float32Array(init.vertices);
     const material = new Three.MeshLambertMaterial({
-      color: init.color || 0x7e57c2,
+      color: typeof init.color === 'number' ? init.color : 0x7e57c2,
     });
 
     geometry.addAttribute('position', new Three.BufferAttribute(vertices, 3));
 
-    return {
-      position: init.position || {x: 0, y: 0, z: 0},
-      mesh: new Three.Mesh(geometry, material),
-    };
+    return new Three.Mesh(geometry, material);
   }
 
   /**
@@ -42,40 +40,40 @@ export class StaticMeshRenderer extends Tactile.Renderer {
    * @return {object} The updated position.
    */
   updatePosition(component, position) {
-    component.mesh.position.x = position.x;
-    component.mesh.position.y = position.y;
-    component.mesh.position.z = position.z;
+    component.position.x = position.x;
+    component.position.y = position.y;
+    component.position.z = position.z;
 
     return component;
   }
 
   /**
    * Performs internal state mutations.
-   * @param {object} state The internal state.
+   * @param {object} state The previous state.
    * @param {object} action The action we are going to reduce (maybe).
    * @return {object} The new state.
    */
   reducer(state = {views: []}, {type, renderer, ...action}) {
+    const {views, ...rest} = state;
     switch (type) {
       case '@Init/Renderer':
         return Object.assign({}, state, {renderer});
       case 'View/Add':
-        const {views, ...state} = state;
+        views.push(action.scene);
         return {
-          views: views.push(action.scene),
-          ...state,
+          views,
+          ...rest,
         };
       case 'Entity/Create':
       case 'Entity/Add':
         const {systems, ...component} = action;
         if (systems.includes(this.getSystemId())) {
-          const {views, ...state} = state;
           for (let i = 0; i < views.length; i++) {
             views[i].scene.add(component);
           }
           return {
             scenes,
-            ...state,
+            ...rest,
           };
         }
         return state;
